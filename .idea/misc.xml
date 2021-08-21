@@ -3,6 +3,11 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/AndroidStudioProject/LearnJetpack/app/src/main/res/drawable-v24/ic_bell.xml" value="0.1" />
+        <entry key="..\:/AndroidStudioProject/LearnJetpack/app/src/main/res/drawable-v24/ic_dotmenu.xml" value="0.1" />
+        <entry key="..\:/AndroidStudioProject/LearnJetpack/app/src/main/res/drawable-v24/ic_grid.xml" value="0.1" />
+        <entry key="..\:/AndroidStudioProject/LearnJetpack/app/src/main/res/drawable-v24/ic_igtv.xml" value="0.1" />
+        <entry key="..\:/AndroidStudioProject/LearnJetpack/app/src/main/res/drawable-v24/ic_reels.xml" value="0.1" />
         <entry key="..\:/AndroidStudioProject/LearnJetpack/app/src/main/res/drawable/ic_logo.xml" value="0.1" />
       </map>
     </option>
