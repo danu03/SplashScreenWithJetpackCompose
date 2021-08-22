@@ -3,21 +3,26 @@ package com.danusuhendra.learnjetpack
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Icon
 import androidx.compose.material.Text
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
+import androidx.compose.material.icons.filled.KeyboardArrowDown
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.painter.Painter
+import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -28,6 +33,32 @@ fun ProfileScreen() {
         TopBar(name = "danusuhendra")
         Spacer(modifier = Modifier.height(4.dp))
         ProfileSelection()
+        Spacer(modifier = Modifier.height(25.dp))
+        ButtonSection(modifier = Modifier.fillMaxWidth())
+        Spacer(modifier = Modifier.height(25.dp))
+        HighlightSection(
+            highlights = listOf(
+                StoryHighlight(
+                    image = painterResource(id = R.drawable.profile),
+                    text = "Youtube"
+                ),
+                StoryHighlight(
+                    image = painterResource(id = R.drawable.profile),
+                    text = "Q&A"
+                ),
+                StoryHighlight(
+                    image = painterResource(id = R.drawable.profile),
+                    text = "Discord"
+                ),
+                StoryHighlight(
+                    image = painterResource(id = R.drawable.profile),
+                    text = "Telegram"
+                ),
+            ),
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(horizontal = 24.dp)
+        )
     }
 }
 
@@ -59,7 +90,7 @@ fun TopBar(
             contentDescription = "Back",
             tint = Color.Black,
             modifier = Modifier
-                .padding(0.dp, 0.dp, 4.dp, 0.dp)
+                .padding(end = 4.dp)
                 .size(24.dp)
         )
         Icon(
@@ -86,6 +117,7 @@ fun ProfileSelection(
             RoundImage(
                 image = painterResource(id = R.drawable.profile),
                 modifier = Modifier
+                    .padding(bottom = 8.dp)
                     .size(100.dp)
                     .weight(3f)
             )
@@ -218,6 +250,105 @@ fun ProfileDescription(
                 letterSpacing = letterSpacing,
                 lineHeight = lineHeight
             )
+        }
+    }
+}
+
+@Composable
+fun ButtonSection(
+    modifier: Modifier = Modifier
+) {
+    val minWidth = 95.dp
+    val height = 30.dp
+    Row(
+        horizontalArrangement = Arrangement.SpaceEvenly,
+        modifier = modifier
+    ) {
+        ActionButton(
+            text = "Following",
+            icon = Icons.Default.KeyboardArrowDown,
+            modifier = Modifier
+                .defaultMinSize(minWidth = minWidth)
+                .height(height)
+        )
+        ActionButton(
+            text = "Message",
+            modifier = Modifier
+                .defaultMinSize(minWidth = minWidth)
+                .height(height)
+        )
+        ActionButton(
+            text = "Email",
+            modifier = Modifier
+                .defaultMinSize(minWidth = minWidth)
+                .height(height)
+        )
+        ActionButton(
+            icon = Icons.Default.KeyboardArrowDown,
+            modifier = Modifier
+                .size(height)
+        )
+    }
+}
+
+
+@Composable
+fun ActionButton(
+    modifier: Modifier = Modifier,
+    text: String? = null,
+    icon: ImageVector? = null
+) {
+    Row(
+        horizontalArrangement = Arrangement.Center,
+        verticalAlignment = Alignment.CenterVertically,
+        modifier = modifier
+            .border(
+                width = 1.dp,
+                color = Color.LightGray,
+                shape = RoundedCornerShape(5.dp)
+            )
+            .padding(6.dp)
+    ) {
+        if (text != null) {
+            Text(
+                text = text,
+                fontWeight = FontWeight.SemiBold,
+                fontSize = 14.sp
+            )
+        }
+        if (icon != null) {
+            Icon(
+                imageVector = icon,
+                contentDescription = null,
+                tint = Color.Black
+            )
+        }
+    }
+}
+
+@Composable
+fun HighlightSection(
+    modifier: Modifier = Modifier,
+    highlights: List<StoryHighlight>
+) {
+    LazyRow(modifier = modifier) {
+        items(highlights.size) {
+            Column(
+                horizontalAlignment = Alignment.CenterHorizontally,
+                verticalArrangement = Arrangement.Center,
+                modifier = Modifier
+                    .padding(end = 15.dp)
+            ) {
+                RoundImage(
+                    image = highlights[it].image,
+                    modifier = Modifier.size(70.dp)
+                )
+                Text(
+                    text = highlights[it].text,
+                    overflow = TextOverflow.Ellipsis,
+                    textAlign = TextAlign.Center
+                )
+            }
         }
     }
 }
